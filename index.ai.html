@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcaGenie – AI Education Assistant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 3D + Gradient + Modern UI -->
+<style>
+
+/* GLOBAL */
+body{
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #1a1f35, #0a0c14);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:70px 20px;
+    background:linear-gradient(135deg,#6a00ff,#00d4ff,#00ffa3);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 4s infinite alternate;
+}
+@keyframes glow {
+    from{filter: drop-shadow(0 0 2px #00e1ff);}
+    to{filter: drop-shadow(0 0 18px #00ffa3);}
+}
+
+header h1{
+    font-size:58px;
+    margin:0;
+    font-weight:800;
+}
+header p{
+    font-size:20px;
+    margin-top:10px;
+    opacity:0.9;
+}
+
+/* MAIN SECTIONS */
+.section{
+    max-width:900px;
+    margin:40px auto;
+    padding:30px;
+    background:rgba(255,255,255,0.06);
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.section h2{
+    font-size:28px;
+    margin-bottom:15px;
+    color:#00f7ff;
+    text-shadow:0 0 10px #00f7ff;
+}
+
+/* TYPEWRITER EFFECT */
+.typewriter{
+    font-size:20px;
+    font-weight:500;
+    border-right:3px solid white;
+    white-space:nowrap;
+    overflow:hidden;
+    width:0;
+    animation: typing 4s steps(40,end) forwards, blink .7s infinite;
+}
+
+@keyframes typing {
+    from{width:0}
+    to{width:100%}
+}
+@keyframes blink {
+    50%{border-color:transparent}
+}
+
+/* CHATBOT */
+.chatbox{
+    background:#0f1320;
+    border-radius:15px;
+    padding:20px;
+    margin-top:20px;
+}
+#messages{
+    height:230px;
+    overflow-y:auto;
+    background:#0b0e17;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    box-shadow:inset 0 0 10px rgba(0,0,0,0.6);
+}
+#input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#161b2c;
+    color:white;
+    font-size:15px;
+}
+button{
+    width:100%;
+    margin-top:10px;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#00d4ff,#0084ff);
+    cursor:pointer;
+    color:black;
+}
+button:hover{opacity:0.8;}
+
+/* FLOATING 3D ORBS */
+.orb{
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:radial-gradient(circle,#00ffe1,#0066ff);
+    filter:blur(40px);
+    border-radius:50%;
+    animation:float 10s infinite ease-in-out;
+    opacity:0.5;
+}
+@keyframes float {
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-40px);}
+    100%{transform:translateY(0);}
+}
+
+#orb1{top:120px; left:-60px;}
+#orb2{bottom:60px; right:-40px;}
+
+</style>
+</head>
+
+<body>
+
+<div class="orb" id="orb1"></div>
+<div class="orb" id="orb2"></div>
+
+<header>
+    <h1>AcaGenie</h1>
+    <p class="typewriter">AI yordamida ta’limni 10x tezroq o‘rganing</p>
+</header>
+
+<div class="section">
+    <h2>Muammo → Yechim</h2>
+    <p><b>Muammo:</b> O‘quvchilar murakkab mavzularni tushunishda qiynaladi.</p>
+    <p><b>Yechim:</b> Real vaqtli AI o‘quv asistenti — savollarni tushuntiradi, misollarni yechadi, motivatsiya beradi.</p>
+</div>
+
+<div class="section">
+    <h2>Jamoa</h2>
+    <p><b>Azizbek</b> — Frontend Developer & AI Integrator</p>
+    <p><b>Stack:</b> HTML, CSS, JS, AI Tools</p>
+</div>
+
+<div class="section">
+    <h2>Nega Aynan Biz?</h2>
+    <p>Biz AI va ta’limni birlashtirib, yoshlar uchun eng zamonaviy va qulay platforma yaratmoqchimiz.</p>
+</div>
+
+<div class="section">
+    <h2>Yo‘l xaritasi</h2>
+    <ul>
+        <li>💡 Idea — tugagan</li>
+        <li>🧪 Prototype — ushbu demo</li>
+        <li>🚀 MVP — 2025-yil fevral</li>
+        <li>🌍 Launch — 2025-yil mart</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>AI Chatbot</h2>
+    <div class="chatbox">
+        <div id="messages"></div>
+        <input id="input" placeholder="Savolingizni yozing...">
+        <button onclick="sendMessage()">Yuborish</button>
+    </div>
+</div>
+
+<script>
+function sendMessage(){
+    let box = document.getElementById("messages");
+    let text = document.getElementById("input").value;
+    if(text.trim()==="")return;
+
+    box.innerHTML += `<p><b>Siz:</b> ${text}</p>`;
+    document.getElementById("input").value="";
+
+    setTimeout(()=>{
+        box.innerHTML += `<p><b>AcaGenie:</b> Bu demo chatbot. Siz yozgan: "${text}". To‘liq versiyada GPT bilan ishlaydi.</p>`;
+        box.scrollTop = box.scrollHeight;
+    },600);
+}
+</script>
+
+</body>
+</html>
